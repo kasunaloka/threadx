@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DX Shop - Futuristic Apparel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #34aadc;
+            --primary-dark: #2a8dbf;
+            --text-color: #ffffff;
+            --text-secondary: #9ca3af;
+            --bg-color: #000000;
+            --bg-secondary: #0c0c0e;
+            --bg-card: #141418;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 60px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .company-name {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--text-color);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: transform 0.2s ease;
+        }
+
+        .blue-x {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            position: relative;
+            padding: 5px 0;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .nav-link span::after {
+            content: "";
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover span::after,
+        .nav-link.active span::after {
+            width: 100%;
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 1.2rem;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+.dropdown {
+    position: relative;
+    list-style: none;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 10px 0;
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: var(--transition);
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    list-style: none;
+}
+
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu li {
+    padding: 8px 20px;
+}
+
+.dropdown-menu li a {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    transition: var(--transition);
+    display: block;
+}
+
+.dropdown-menu li a:hover {
+    color: var(--primary-color);
+    background-color: rgba(52, 170, 220, 0.1);
+}
+
+
+        /* Shop Hero */
+        .shop-hero {
+            padding: 180px 0 100px;
+            background: linear-gradient(135deg, rgba(12, 12, 14, 0.39) 0%, rgba(0,0,0,0.95) 100%), 
+                        url('../image_fx_-1.jpg') center/cover no-repeat;
+            text-align: center;
+            position: relative;
+        }
+
+        .shop-hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        .shop-hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        /* Shop Filters */
+        .shop-filters {
+            background-color: var(--bg-secondary);
+            padding: 30px 0;
+            position: sticky;
+            top: 80px;
+            z-index: 90;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .filter-label {
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .filter-select {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(52, 170, 220, 0.2);
+        }
+
+        .search-bar {
+            position: relative;
+            flex-grow: 1;
+            max-width: 400px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(52, 170, 220, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        /* Product Grid */
+        .shop-products {
+            padding: 80px 0;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background-color: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(52, 170, 220, 0.3);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .product-image-container {
+            position: relative;
+            height: 520px;
+            overflow: hidden;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-actions {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-actions {
+            opacity: 1;
+        }
+
+        .action-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .action-btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .product-details {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        .product-category {
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-price {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .current-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .original-price {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-decoration: line-through;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(52, 170, 220, 0.3);
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 60px;
+            gap: 10px;
+        }
+
+        .page-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            background-color: var(--bg-card);
+            color: var(--text-color);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .page-link:hover,
+        .page-link.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-color);
+            padding: 80px 0 40px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 50px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .footer-brand {
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+        }
+
+        .footer-brand .company-name {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .footer-links {
+            display: flex;
+            flex: 3;
+            justify-content: space-between;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .footer-column h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        .footer-column ul {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            list-style: none;
+        }
+
+        .footer-column ul li a {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .social-icons a {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            background-color: rgba(52, 170, 220, 0.1);
+            transform: translateY(-3px);
+        }
+        .mobile-menu-toggle {
+                display: none;
+                background: none;
+                border: none;
+                color: var(--text-color);
+                font-size: 1.5rem;
+                cursor: pointer;
+                padding: 5px;
+            }
+            .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 30px;
+    border-top: 1px solid var(--border-color);
+    margin-top: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.payment-methods {
+    display: flex;
+    gap: 15px;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+}    
+            @media (max-width: 768px) {
+                .mobile-menu-toggle {
+                    display: block;
+                }
+                
+                .nav-links {
+                    position: fixed;
+                    top: 80px;
+                    left: 0;
+                    width: 100%;
+                    background-color: var(--bg-secondary);
+                    flex-direction: column;
+                    align-items: center;
+                    padding: 20px 0;
+                    gap: 20px;
+                    transform: translateY(-150%);
+                    transition: transform 0.3s ease;
+                    z-index: 99;
+                }
+                
+                .nav-links.active {
+                    transform: translateY(0);
+                }
+                
+                .nav-link {
+                    padding: 10px 0;
+                }
+            }
+        /* Responsive */
+        @media (max-width: 992px) {
+            .shop-hero h1 {
+                font-size: 3rem;
+            }
+            
+            .filter-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .search-bar {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .shop-hero {
+                padding: 150px 0 80px;
+            }
+            
+            .shop-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <div class="brand">
+                <a href="index.html" class="brand-logo">
+                    <span class="company-name">Thread<span class="blue-x">X</span></span>
+                </a>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link"><span>Home</span></a>
+                <li class="dropdown">
+                    <a href="#collection" class="nav-link"><span>Shop</span> <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../shop/linen.html">Linen Collection</a></li>
+                    </ul>
+                </li>
+                <a href="#" class="nav-link"><span>About</span></a>
+                <a href="#" class="nav-link"><span>Contact</span></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Shop Hero -->
+    <section class="shop-hero">
+        <div class="container">
+            <h1>thread<span class="blue-x">X</span> SHOP</h1>
+            <p>Discover our premium collection of futuristic apparel designed for the modern era. Each piece is crafted with cutting-edge materials and innovative design.</p>
+        </div>
+        <h1>Popcorn</h1>
+    </section>
+
+    <!-- Shop Products -->
+    <section class="shop-products">
+        <div class="container">
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-badge">New</div>
+                    <div class="product-image-container">
+                        <img src="../storimg/Designer (8).png" alt="Quantum T-Shirt" class="product-image">
+                        <div class="product-actions">
+                            <button class="action-btn"><i class="far fa-heart"></i></button>
+                            <button class="action-btn"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Spykar Popcorn Shirt</h3>
+                        <span class="product-category">Shirts</span>
+                        <div class="product-price">
+                            <span class="current-price">Rs.2199.00</span>
+                            <span class="original-price">Rs2499.000</span>
+                        </div>
+                        <a href="https://wa.me/p/8765005363599950/94752558533" style="text-decoration: none; width: 100%;">
+                            <button class="add-to-cart">
+                                <i class="fas fa-shopping-cart"></i> Order now
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-badge">New</div>
+                    <div class="product-image-container">
+                        <img src="../storimg/Untitled project-Layer 1 (9).jpeg" alt="Quantum T-Shirt" class="product-image">
+                        <div class="product-actions">
+                            <button class="action-btn"><i class="far fa-heart"></i></button>
+                            <button class="action-btn"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title"> Popcorn Shirt</h3>
+                        <span class="product-category">Shirts</span>
+                        <div class="product-price">
+                            <span class="current-price">Rs.2199.00</span>
+                            <span class="original-price">Rs2499.000</span>
+                        </div>
+                        <a href="https://wa.me/message/6H76EOEBCXENP1" style="text-decoration: none; width: 100%;">
+                            <button class="add-to-cart">
+                                <i class="fas fa-shopping-cart"></i> Order now
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-badge">New</div>
+                    <div class="product-image-container">
+                        <img src="../storimg/Untitled project-Layer 1 (10).jpeg" alt="Quantum T-Shirt" class="product-image">
+                        <div class="product-actions">
+                            <button class="action-btn"><i class="far fa-heart"></i></button>
+                            <button class="action-btn"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title"> Popcorn Shirt</h3>
+                        <span class="product-category">Shirts</span>
+                        <div class="product-price">
+                            <span class="current-price">Rs.2199.00</span>
+                            <span class="original-price">Rs2499.000</span>
+                        </div>
+                        <a href="https://wa.me/message/6H76EOEBCXENP1" style="text-decoration: none; width: 100%;">
+                            <button class="add-to-cart">
+                                <i class="fas fa-shopping-cart"></i> Order now
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-badge">New</div>
+                    <div class="product-image-container">
+                        <img src="../storimg/Untitled project-Layer 1 (11).jpeg" alt="Quantum T-Shirt" class="product-image">
+                        <div class="product-actions">
+                            <button class="action-btn"><i class="far fa-heart"></i></button>
+                            <button class="action-btn"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title"> Popcorn Shirt</h3>
+                        <span class="product-category">Shirts</span>
+                        <div class="product-price">
+                            <span class="current-price">Rs.2199.00</span>
+                            <span class="original-price">Rs2499.000</span>
+                        </div>
+                        <a href="https://wa.me/message/6H76EOEBCXENP1" style="text-decoration: none; width: 100%;">
+                            <button class="add-to-cart">
+                                <i class="fas fa-shopping-cart"></i> Order now
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-badge">New</div>
+                    <div class="product-image-container">
+                        <img src="../storimg/Untitled project-Layer 1 (12).jpeg" alt="Quantum T-Shirt" class="product-image">
+                        <div class="product-actions">
+                            <button class="action-btn"><i class="far fa-heart"></i></button>
+                            <button class="action-btn"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title"> Popcorn Shirt</h3>
+                        <span class="product-category">Shirts</span>
+                        <div class="product-price">
+                            <span class="current-price">Rs.2199.00</span>
+                            <span class="original-price">Rs2499.000</span>
+                        </div>
+                        <a href="https://wa.me/message/6H76EOEBCXENP1" style="text-decoration: none; width: 100%;">
+                            <button class="add-to-cart">
+                                <i class="fas fa-shopping-cart"></i> Order now
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-badge">New</div>
+                    <div class="product-image-container">
+                        <img src="../storimg/Untitled project-Layer 1 (13).jpeg" alt="Quantum T-Shirt" class="product-image">
+                        <div class="product-actions">
+                            <button class="action-btn"><i class="far fa-heart"></i></button>
+                            <button class="action-btn"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title"> Popcorn Shirt</h3>
+                        <span class="product-category">Shirts</span>
+                        <div class="product-price">
+                            <span class="current-price">Rs.2199.00</span>
+                            <span class="original-price">Rs2499.000</span>
+                        </div>
+                        <a href="https://wa.me/message/6H76EOEBCXENP1" style="text-decoration: none; width: 100%;">
+                            <button class="add-to-cart">
+                                <i class="fas fa-shopping-cart"></i> Order now
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="product-card">
+                    <div class="product-badge">New</div>
+                    <div class="product-image-container">
+                        <img src="../storimg/Untitled project-Layer 1 (14).jpeg" alt="Quantum T-Shirt" class="product-image">
+                        <div class="product-actions">
+                            <button class="action-btn"><i class="far fa-heart"></i></button>
+                            <button class="action-btn"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title"> Popcorn Shirt</h3>
+                        <span class="product-category">Shirts</span>
+                        <div class="product-price">
+                            <span class="current-price">Rs.2199.00</span>
+                            <span class="original-price">Rs2499.000</span>
+                        </div>
+                        <a href="https://wa.me/message/6H76EOEBCXENP1" style="text-decoration: none; width: 100%;">
+                            <button class="add-to-cart">
+                                <i class="fas fa-shopping-cart"></i> Order now
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Product 8 -->
+                   <div class="product-card">
+                    <div class="product-badge">New</div>
+                    <div class="product-image-container">
+                        <img src="../storimg/Untitled project-Layer 1 (15).jpeg" alt="Quantum T-Shirt" class="product-image">
+                        <div class="product-actions">
+                            <button class="action-btn"><i class="far fa-heart"></i></button>
+                            <button class="action-btn"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title"> Popcorn Shirt</h3>
+                        <span class="product-category">Shirts</span>
+                        <div class="product-price">
+                            <span class="current-price">Rs.2199.00</span>
+                            <span class="original-price">Rs2499.000</span>
+                        </div>
+                        <a href="https://wa.me/message/6H76EOEBCXENP1" style="text-decoration: none; width: 100%;">
+                            <button class="add-to-cart">
+                                <i class="fas fa-shopping-cart"></i> Order now
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                
+            <!-- Product 9 -->
+            <div class="product-card">
+                <div class="product-badge">New</div>
+                <div class="product-image-container">
+                    <img src="../storimg/Untitled project-Layer 1 (16).jpeg" alt="Quantum T-Shirt" class="product-image">
+                    <div class="product-actions">
+                        <button class="action-btn"><i class="far fa-heart"></i></button>
+                        <button class="action-btn"><i class="fas fa-expand"></i></button>
+                    </div>
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title"> Popcorn Shirt</h3>
+                    <span class="product-category">Shirts</span>
+                    <div class="product-price">
+                        <span class="current-price">Rs.2199.00</span>
+                        <span class="original-price">Rs2499.000</span>
+                    </div>
+                    <a href="https://wa.me/message/6H76EOEBCXENP1" style="text-decoration: none; width: 100%;">
+                        <button class="add-to-cart">
+                            <i class="fas fa-shopping-cart"></i> Order now
+                        </button>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <!-- <div class="pagination">
+                <a href="#" class="page-link"><i class="fas fa-chevron-left"></i></a>
+                <a href="#" class="page-link active">1</a>
+                <a href="#" class="page-link">2</a>
+                <a href="#" class="page-link">3</a>
+                <a href="#" class="page-link">4</a>
+                <a href="#" class="page-link"><i class="fas fa-chevron-right"></i></a>
+            </div>
+        </div> -->
+    </section>
+
+      <!-- Footer -->
+      <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="company-name">Thread<span class="blue-x">X</span></span>
+                    <p>Elevating everyday style with premium fabrics and timeless designs. Experience comfort without compromising on sophistication.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Collections</h4>
+                        <ul>
+                            <li><a href="#">Summer 2023</a></li>
+                            <li><a href="#">Autumn Essentials</a></li>
+                            <li><a href="#">Workwear Edit</a></li>
+                            <li><a href="#">Casual Basics</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Customer Care</h4>
+                        <ul>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Shipping Policy</a></li>
+                            <li><a href="#">Returns & Exchanges</a></li>
+                            <li><a href="#">FAQs</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#">Our Story</a></li>
+                            <li><a href="#">Sustainability</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 ThreadX. All rights reserved.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    </script>
+    </body>
+    </html>

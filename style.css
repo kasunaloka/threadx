@@ -710,11 +710,9 @@ section {
 }
 
 .about-image {
-    background-image: url('https://images.unsplash.com/photo-1589310243389-96a5483213a8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80');
+    background-image: url('./thedxlogo.png');
 }
-.sizing-image {
-    background-image: url('https://images.unsplash.com/photo-1505022610485-0249ba5b3675?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80');
-}
+
 
 .about-image::after { /* Subtle gradient overlay for About image */
     content: '';
@@ -784,19 +782,6 @@ section {
 .feature-card p {
     color: var(--text-secondary);
 }
-
-/* --- Sizing Section Specific --- */
-.sizing {
-    background-color: var(--bg-secondary);
-}
-
-.size-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 25px; /* Adjusted margin */
-}
-
-/* --- Testimonials Section --- */
 .testimonials {
     background-color: var(--bg-color);
 }

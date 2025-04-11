@@ -3,14 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ThreadX offers premium quality shirts crafted with distinction. Explore our exclusive Popcorn and Linen collections featuring timeless designs and sustainable materials.">
+    <meta name="keywords" content="ThreadX, premium shirts, popcorn collection, linen collection, luxury clothing, sustainable fashion, high-quality shirts">
+    <meta name="author" content="ThreadX">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="ThreadX - Premium Shirt Collection">
+    <meta property="og:description" content="Discover our premium shirt collections crafted with distinction. Timeless designs with sustainable materials.">
+    <meta property="og:image" content="./flex2.png">
+    <meta property="og:url" content="https://threadx.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ThreadX - Premium Shirt Collection">
+    <meta name="twitter:description" content="Discover our premium shirt collections crafted with distinction. Timeless designs with sustainable materials.">
+    <meta name="twitter:image" content="./flex2.png">
+    
     <title>ThreadX - Premium Shirt Collection</title>
     <link rel="icon" href="./flex2.png" type="image/x-icon">
     <link rel="shortcut icon" href="./flex2.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://threadx.com">
 </head>
 <body>
+    <!-- Structured Data for Organization and WebSite -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "ThreadX",
+      "url": "https://threadx.com",
+      "logo": "https://threadx.com/flex2.png",
+      "description": "Premium shirts crafted with distinction. Explore our exclusive Popcorn and Linen collections.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+94 75 255 8533",
+        "contactType": "customer service",
+        "email": "threadxcontact@gmail.com"
+      },
+      "sameAs": [
+        "https://facebook.com/threadx",
+        "https://instagram.com/threadx",
+        "https://twitter.com/threadx",
+        "https://pinterest.com/threadx"
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "ThreadX - Premium Shirt Collection",
+      "url": "https://threadx.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://threadx.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "Product",
+            "name": "Popcorn Collection",
+            "description": "Timeless design with premium Popcorn fabric",
+            "url": "https://threadx.com/shop/popcorn.html",
+            "image": "https://threadx.com/storimg/Designer (8).png",
+            "brand": {
+              "@type": "Brand",
+              "name": "ThreadX"
+            },
+            "offers": {
+              "@type": "Offer",
+              "availability": "https://schema.org/InStock"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "Product",
+            "name": "Linen Collection",
+            "description": "Breathable comfort for warmer days",
+            "url": "https://threadx.com/shop/linen.html",
+            "image": "https://threadx.com/storimg/Untitled project-Layer 1 (9).jpeg",
+            "brand": {
+              "@type": "Brand",
+              "name": "ThreadX"
+            },
+            "offers": {
+              "@type": "Offer",
+              "availability": "https://schema.org/InStock"
+            }
+          }
+        }
+      ]
+    }
+    </script>
     <header>
         <nav class="navbar">
             <div class="navbar-container container">
@@ -46,9 +149,9 @@
         <section class="hero">
             <div class="hero-background">
                 <div class="slideshow">
-                    <div class="slide active" style="background-image: url('./i\ want\ blue\ elephant\ near\ the\ sea.jpeg')"></div>
-                    <div class="slide" style="background-image: url('./image_fx-3.jpg')"></div>
-                    <div class="slide" style="background-image: url('./image_fx-4.jpg')"></div>
+                    <div class="slide active" style="background-image: url('./i\ want\ blue\ elephant\ near\ the\ sea.jpeg')" aria-label="Premium shirt fabric texture closeup" role="img"></div>
+                    <div class="slide" style="background-image: url('./image_fx-3.jpg')" aria-label="ThreadX premium collection showcase" role="img"></div>
+                    <div class="slide" style="background-image: url('./image_fx-4.jpg')" aria-label="Luxury shirt material detail" role="img"></div>
                 </div>
                 <div class="hero-background-overlay"></div>
             </div>

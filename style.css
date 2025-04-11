@@ -710,7 +710,7 @@ section {
 }
 
 .about-image {
-    background-image: url('./thedxlogo.png');
+    background-image: url('https://i.pinimg.com/474x/d3/09/be/d309be71940876f1d9dc9ac01b182145.jpg');
 }
 
 
@@ -956,6 +956,38 @@ section {
     box-shadow: 0 10px 25px rgba(52, 170, 220, 0.3);
 }
 
+.whatsapp-button {
+    background-color: #25D366;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px 32px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+}
+
+.whatsapp-button:hover {
+    background-color: #ffffff;
+    color: #25D366;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(22, 140, 18, 0.3);
+}
+
+.whatsapp-button i {
+    font-size: 1.2rem;
+    color: white;
+}
+.whatsapp-button:hover i {
+    color:#25D366;
+}
 /* --- Footer --- */
 footer {
     background-color: var(--bg-color);

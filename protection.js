@@ -75,43 +75,9 @@
     // Run periodically to maintain protection
     setInterval(consoleProtection, 2000);
 
-    // Advanced DevTools detection
-    const detectDevTools = function() {
-        let devtoolsOpen = false;
-        
-        // Method 1: Size difference detection
-        const widthThreshold = window.outerWidth - window.innerWidth > 160;
-        const heightThreshold = window.outerHeight - window.innerHeight > 160;
-        if (widthThreshold || heightThreshold) {
-            devtoolsOpen = true;
-        }
-        
-        // Method 2: Debugger detection
-        const element = new Image();
-        Object.defineProperty(element, 'id', {
-            get: function() {
-                devtoolsOpen = true;
-                return '';
-            }
-        });
-        console.debug(element);
-        
-        // Method 3: Performance timing
-        const start = performance.now();
-        debugger;
-        const end = performance.now();
-        if (end - start > 100) {
-            devtoolsOpen = true;
-        }
-        
-        // Take action if DevTools detected
-        if (devtoolsOpen) {
-            document.body.innerHTML = '<div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;"><h1>Access Denied</h1><p>Developer tools detected. Please close developer tools to view this website.</p></div>';
-        }
-    };
-    
-    // Run DevTools detection periodically
-    setInterval(detectDevTools, 1000);
+    // Advanced DevTools detection - Removed as requested
+    // Developer tools detection functionality has been disabled
+    // while keeping other protection features intact
 
     // Obfuscate HTML source
     document.addEventListener('DOMContentLoaded', function() {
